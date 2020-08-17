@@ -102,3 +102,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+.vscode
+node_modules
+
+Log/*.*
+client/src/logo.svg
+client/public/logo192.png
+client/public/logo512.png
+

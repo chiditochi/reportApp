@@ -1,0 +1,429 @@
+-----------------------------------------------
+"app": {
+    "name": "Ecommerce Reporting App",
+    "developer": "chiditochi@yahoo.com",
+    "project-summary": "Nodejs app with Reactjs framework and postgresql database.",
+    "isProduction": 3,
+    "productionEmail": "",
+    "testEmail": "chidi.ukaigwe@up-ng.com",
+    "port": {
+      "server": 3001,
+      "client": 3000
+    },
+    "groupEmail": "ecommerce@up-ng.com",
+    "groupEmail2": "chidi.ukaigwe@up-ng.com,osman.salah@up-ng.com"
+  },
+  "db": {
+    "development": {
+      "config": {
+        "host": "172.19.6.17",
+        "port": 1700,
+        "user": "chidiu",
+        "password": "chidi-admin",
+        "database": "payarenav2",
+        "ssl": {
+          "rejectUnauthorized": false
+        }
+      },
+      "connectionString": "postgres://chidiu:chidi-admin@172.19.6.17:1700/payarenav2?ssl=true",
+      "connectionStrings": "postgres://payarena:payarena@172.19.8.161:1700/payarena"
+    },
+    "production": {
+      "config": {
+        "host": "172.19.6.17",
+        "port": 1700,
+        "user": "payarena",
+        "password": "PASSWORD@2019",
+        "database": "payarenav2",
+        "ssl": {
+          "rejectUnauthorized": false
+        }
+      },
+      "connectionString": "postgres://payarena:PASSWORD@2019@172.19.6.17:1700/payarenav2?ssl=true"
+    },
+    "homeDev": {
+      "config": {
+        "host": "127.0.0.1",
+        "port": 5432,
+        "user": "postgres",
+        "password": "admin-chidi",
+        "database": "payarenav2",
+        "ssl": false
+      },
+      "connectionString": "postgres://postgres:admin-chidi@127.0.0.1:5432/payarenav2?ssl=false"
+    }
+  },
+  "email": {
+    "user": "selfservice@local.vcndc.com",
+    "password": "User2012",
+    "host": "172.19.2.208",
+    "port": 25,
+    "ssl": false,
+    "timeout": 300000
+  },
+-----------------------------------------------
+app.groupEmail
+priority.1.
+
+
+exports.smtp = {
+    from: {
+        name: process.env.SMTP_FROM_NAME || exports.projectName,
+        address: process.env.SMTP_FROM_ADDRESS || exports.systemEmail
+    },
+    credentials: {
+        user: process.env.SMTP_USERNAME || 'trusoftng@gmail.com',
+        password: process.env.SMTP_PASSWORD || 'cdwtyrcxuoidmpzj',
+        host: process.env.SMTP_HOST || 'smtp.gmail.com',
+        ssl: true,
+        timeout: 300000
+    }
+};
+----------------------------------------------------
+ var m = {
+              firstName: obj.firstName,
+              lastName: obj.lastName,
+              bookTitle: book.title,
+              author: book.author,
+              price: book.price,
+              description: book.description,
+              scgnUrl: req.app.config.host,
+              mEmail: obj.mEmail
+          }
+  req.app.utility.notify.emit('newPublication', m);
+-------------------------------------------------------------
+var email 	= require("./path/to/emailjs/email");
+var server 	= email.server.connect({
+   user:	"username", 
+   password:"password", 
+   host:	"smtp-mail.outlook.com", 
+   tls: {ciphers: "SSLv3"}
+});
+ 
+var message	= {
+   text:	"i hope this works", 
+   from:	"you <username@outlook.com>", 
+   to:		"someone <someone@your-email.com>, another <another@your-email.com>",
+   cc:		"else <else@your-email.com>",
+   subject:	"testing emailjs",
+   attachment: 
+   [
+      {data: "<html>i <i>hope</i> this works! here is an image: <img src='cid:my-image' width='100' height ='50'> </html>"},
+      {path:"path/to/file.zip", type:"application/zip", name:"renamed.zip"},
+      {path:"path/to/image.jpg", type:"image/jpg", headers:{"Content-ID":"<my-image>"}}
+   ]
+};
+ 
+// send the message and get a callback with an error or details of the message that was sent
+server.send(message, function(err, message) { console.log(err || message); });
+-------------------------------------------------------------------
+email.server.connect(options)
+options =
+{
+	user 		// username for logging into smtp 
+	password // password for logging into smtp
+	host		// smtp host
+	port		// smtp port (if null a standard port number will be used)
+	ssl		// boolean or object {key, ca, cert} (if true or object, ssl connection will be made)
+	tls		// boolean or object (if true or object, starttls will be initiated)
+	timeout	// max number of milliseconds to wait for smtp responses (defaults to 5000)
+	domain	// domain to greet smtp with (defaults to os.hostname)
+authentication // array of preferred authentication methods ('PLAIN', 'LOGIN', 'CRAM-MD5', 'XOAUTH2')
+}
+email.server.send(message, callback)
+message =
+{
+	text		// text of the email 
+	from		// sender of the format (address or name <address> or "name" <address>)
+	to			// recipients (same format as above), multiple recipients are separated by a comma
+	cc			// carbon copied recipients (same format as above)
+	bcc		// blind carbon copied recipients (same format as above)
+	subject	// string subject of the email
+  attachment // one attachment or array of attachments
+}
+----------------------------------------
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+
+    "@material-ui/core": "^4.9.4",
+    "@material-ui/icons": "^4.9.1",
+    "react-router": "^5.1.2",
+    "underscore": "^1.9.2",
+
+npx create-react-app client
+
+    ,
+  "proxy": "http://localhost:3001"
+    
+    const writeData = async (fileName, data)=>{ //fileName should contain file extension
+    const filePath = path.join(__dirname, '..', 'data', fileName);
+    const d = JSON.stringify(data, null, 2);
+    //console.log('Data: ', d)
+    const r = fs.writeFileSync(filePath, d);
+    //  ,e=>{
+    //   if(e) {
+    //     console.log('Error writing file(' + fileName + '): ' + e.message)
+    //      return;
+    //   }
+    //   //throw new Error(e.message)
+    // })
+        console.log('Successfully written data to ' + fileName);
+
+    }
+
+    //save Transfer data
+    controller.saveTransferData = async (req, res, next)=>{
+    const result = {};
+
+    const start = "'2019-12-01'";
+    const end = "'2019-12-10'";
+    const sourcebank = '700';
+    const fileName = 'transfer-data.json';
+
+    const allTransfersValues = [start, end, sourcebank];
+    const allTransfers = 'select * from switch.transfers where requesttime >= $1 and requesttime < $2 and sourcebank != $3 order by requesttime desc;';
+
+    try {
+    let result = await DB.makeQueryRequest(allTransfers, allTransfersValues);
+    let r = await writeData(fileName, JSON.stringify(result.rows));
+    console.log(fileName + ' saved with ' + result.rowCount + ' saved!');
+    res.json({
+    message: "Successful",
+    count: result.rowCount
+    })
+    } catch (error) {
+    console.log('Error writing file: ', error.message)
+    res.json({ message: error.message, error: error.name })
+    }    
+
+    }
+
+    //sava Agency Transfer 
+    controller.saveAgencyTransferData = async (req, res, next)=>{
+    const result = {};
+
+        const start = '2019-12-01';
+        const end = '2020-01-01';
+        const sourcebank = '700';
+        const fileName = 'agency-transfer.json';
+
+        const allTransfersValues = [start, end, sourcebank];
+        const allTransfers = 'select * from switch.transfers where requesttime >=$1 requesttime < $2 and sourcebank =$3 order by requesttime desc;';
+
+    try {
+    let result = await DB.makeQueryRequest(allTransfers, allTransfersValues);
+    let r = await writeData(fileName, result.rows);
+    console.log(fileName + ' saved with ' + result.rowCount + ' saved!');
+    res.json({
+        message: "Successful",
+        count: result.rowCount
+    })
+    } catch (error) {
+    res.json({ message: error.message, error: error.name })
+    }    
+
+    }
+
+<img src={logo} className="App-logo" alt="logo" />
+                // let i = (index + 1) * 10;
+                // let myRedirect = (r)=>(
+                //     <Redirect 
+                //     to={r.to} 
+                //     from={r.from} 
+                //     key={i.toString()} /> 
+                // );
+                return (
+              <Fragment>
+                  {/* { myRedirect(route) } */}
+                <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    children={<route.sidebar />}
+                />
+
+return (
+        <Fragment>
+            { record.map((v,i)=>{ 
+                return (
+                <Fragment key={i}>
+                    <tr >
+                        <td>{v.sourcebank}</td>
+                        <td>{v.destbank}</td>
+                        <td>{v.requesttime}</td>
+                        <td>{v.amount}</td>
+                        <td>{v.status}</td>
+                        <td>{v.statusmessage}</td>
+                        <td>{v.refid}</td>
+                    </tr>
+                </Fragment>
+                )
+            })}
+        </Fragment>
+
+        {
+      "institution": "SVR",
+      "txid": "2f5fbe4e335c447f9c1528b182017cf5",
+      "sourcebank": "909",
+      "destbank": "058",
+      "accountno": "0029644071",
+      "poolaccount": null,
+      "amount": "100000.0",
+      "fee": "0",
+      "remark": "PAYARENA TRANSFER TO SALVADOR, IDRIS BABA",
+      "requestid": "4667219744",
+      "requesttype": "Credit",
+      "requesttime": "2020-02-07T12:29:49.000Z",
+      "route": "NIP",
+      "routebin": null,
+      "responsetime": "2020-02-07T12:29:52.000Z",
+      "statuscode": "00",
+      "statusmessage": "Approved or completed successfully",
+      "responseid": "110001200207132950289787397495",
+      "rrn": null,
+      "client": "TWO",
+      "requerycount": 0,
+      "reversed": false,
+      "reversible": false,
+      "batchid": null,
+      "approved": true,
+      "beneficiary": "SALVADOR, IDRIS BABA",
+      "sender": "058",
+      "direction": "OUT",
+      "debitaccount": null
+    }
+
+    #ffa08c
+
+    select t.day, t.destbank, approved, count(t.amount), sum(t.amount) from
+(select to_char(requesttime, 'YYYY-MM-dd') "day", amount, destbank, case approved when true then 'Approved' else 'Declined' end "approved" from switch.transfers where sourcebank != '700' and batchid is null
+    and requesttime >= current_date
+)
+ t group by t.day, t.destbank, t.approved order by t.day desc;
+
+ -----------------------------------------------------------
+ import React from 'react';
+import PropTypes from 'prop-types';
+import SwipeableViews from 'react-swipeable-views';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box p={3}>{children}</Box>}
+    </Typography>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    width: 500,
+  },
+}));
+
+export default function FullWidthTabs() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleChangeIndex = index => {
+    setValue(index);
+  };
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          aria-label="full width tabs example"
+        >
+          <Tab label="Item One" {...a11yProps(0)} />
+          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Item Three" {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={value}
+        onChangeIndex={handleChangeIndex}
+      >
+        <TabPanel value={value} index={0} dir={theme.direction}>
+          Item One
+        </TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          Item Two
+        </TabPanel>
+        <TabPanel value={value} index={2} dir={theme.direction}>
+          Item Three
+        </TabPanel>
+      </SwipeableViews>
+    </div>
+  );
+}
+
+---------------------------------------------------------
+destbank	Beneficiary Bank
+050	ECOBANK
+370	Undefined
+068	STANDARD CHARTERED
+061	Undefined
+221	STANBIC IBTC
+076	POLARIS BANK
+030	HERITAGE BANK
+232	STERLING BANK
+214	FCMB
+501	PayAttitude
+301	Undefined
+""	Undefined
+399	Undefined
+035	WEMA BANK
+057	ZENITH BANK
+063	DIAMOND BANK
+082	KEYSTONE BANK
+032	UNION BANK
+044	ACCESS BANK NIGERIA
+070	FIDELITY BANK
+011	FIRST BANK OF NIGERIA
+58	Undefined
+058	GTBANK
+510	Undefined
+103	Undefined
+033	UNITED BANK FOR AFRICA
+215	UNITY BANK

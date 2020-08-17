@@ -1,0 +1,19 @@
+GET http://localhost:3001/api/transfer?date='2020-01-11'
+
+###
+
+GET http://localhost:3001/api/agencyTransfer?date='2020-01-31'
+
+###
+
+GET http://localhost:3001/api/dailyTransferSummary?date='2020-01-01'
+
+###
+
+GET http://localhost:3001/api/dailySummaryCountnVolume?date='2020-03-15'
+
+###
+
+GET http://localhost:3001/api/monthlyTransferSummary
+
+

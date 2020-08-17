@@ -1,0 +1,47 @@
+{
+  "emailMessage": {
+    "text": "",
+    "from": "ecommerce@up-ng.com",
+    "to": "",
+    "cc": "",
+    "subject": "",
+    "attachment": [
+      {
+        "path": "",
+        "type": "",
+        "name": ""
+      }
+    ]
+  },
+  "priority": {
+    "one": {
+      "banks": "011,058,033,044,057",
+      "cycle": "15"
+    },
+    "two": {
+      "banks": "070,050,232,076,214,082",
+      "cycle": "30"
+    },
+    "three": {
+      "banks": "215,221,301,030,035,068",
+      "cycle": "60"
+    }
+  },
+  "priorityCycles": {
+    "15": [
+      "one"
+    ],
+    "30": [
+      "one",
+      "two"
+    ],
+    "60": [
+      "one",
+      "two",
+      "three"
+    ]
+  },
+  "transferFailureCount": 10,
+  "agencyFailureCount": 10,
+  "noTransactionNotificationPeriod": 12
+}
