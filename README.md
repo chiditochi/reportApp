@@ -1,2 +1,8 @@
 # reportApp
-This is an e-commerce report application. This application is built on node with a reactjs front end
+This is an e-commerce report application. 
+This application is built using the following technologies:
+  - nodejs 
+  - express
+  - postgresql
+  - reactjs
+  - materialize
