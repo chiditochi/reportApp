@@ -25,16 +25,16 @@
           "rejectUnauthorized": false
         }
       },
-      "connectionString": "postgres://chidiu:chidi-admin@172.19.6.17:1700/payarenav2?ssl=true",
-      "connectionStrings": "postgres://payarena:payarena@172.19.8.161:1700/payarena"
+      "connectionString": "postgres://{user:password@host:port}/{db}?ssl=true",
+      "connectionStrings": "postgres://{user:password@host:port}/{db}"
     },
     "production": {
       "config": {
-        "host": "172.19.6.17",
-        "port": 1700,
-        "user": "payarena",
-        "password": "PASSWORD@2019",
-        "database": "payarenav2",
+        "host": "",
+        "port": ,
+        "user": "",
+        "password": "",
+        "database": "",
         "ssl": {
           "rejectUnauthorized": false
         }
@@ -46,17 +46,17 @@
         "host": "127.0.0.1",
         "port": 5432,
         "user": "postgres",
-        "password": "admin-chidi",
-        "database": "payarenav2",
+        "password": "",
+        "database": "",
         "ssl": false
       },
-      "connectionString": "postgres://postgres:admin-chidi@127.0.0.1:5432/payarenav2?ssl=false"
+      "connectionString": ""
     }
   },
   "email": {
-    "user": "selfservice@local.vcndc.com",
-    "password": "User2012",
-    "host": "172.19.2.208",
+    "user": "",
+    "password": "",
+    "host": "",
     "port": 25,
     "ssl": false,
     "timeout": 300000
